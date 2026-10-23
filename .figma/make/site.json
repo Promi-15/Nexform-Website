@@ -1,0 +1,10 @@
+{
+  "description": "Explore a premium, interactive website showcasing futuristic human-machine augmentation concepts with cinematic visuals, detailed modules, and immersive storytelling.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
