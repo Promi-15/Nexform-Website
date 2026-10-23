@@ -11,14 +11,20 @@ import {
 const ALT_HERO =
   "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260609_135737_0da59642-725b-451a-997b-b0283d95a42a.png&w=1280&q=85"
 
+const BASE = import.meta.env.BASE_URL || "/"
+const asset = (path: string) =>
+  path.startsWith("http")
+    ? path
+    : `${BASE.endsWith("/") ? BASE : `${BASE}/`}${path.replace(/^\.?\//, "")}`
+
 const images = {
-  portrait: "/images/philosophy-cybernetic-face.jpg",
-  portraitDark: "/images/study-03-human-robot-interaction.jpg",
-  eye: "/images/study-02-perception-vision.jpg",
-  eyeShadow: "/images/study-02-perception-vision.jpg",
-  engineering: "/images/tech-01-structural-support.jpg",
-  material: "/images/tech-04-material-integration.jpg",
-  interface: "/images/tech-03-adaptive-mechanics.jpg",
+  portrait: asset("images/philosophy-cybernetic-face.jpg"),
+  portraitDark: asset("images/study-03-human-robot-interaction.jpg"),
+  eye: asset("images/study-02-perception-vision.jpg"),
+  eyeShadow: asset("images/study-02-perception-vision.jpg"),
+  engineering: asset("images/tech-01-structural-support.jpg"),
+  material: asset("images/tech-04-material-integration.jpg"),
+  interface: asset("images/tech-03-adaptive-mechanics.jpg"),
 }
 
 const navItems = [
@@ -318,7 +324,10 @@ function Hero({ onConnect }: { onConnect: () => void }) {
 
   return (
     <section className="hero" id="top" ref={heroRef}>
-      <div className="hero-base" />
+      <div
+        className="hero-base"
+        style={{ backgroundImage: `url("${asset("nexform-hero.jfif")}")` }}
+      />
       <div
         className="hero-alt"
         ref={revealRef}
@@ -399,25 +408,25 @@ const modules = [
     "01",
     "Structural Support",
     "Engineered frameworks, robotic exoskeletons, articulated supports, and mechanical structures designed to complement the human form.",
-    "/images/tech-01-structural-support.jpg",
+    asset("images/tech-01-structural-support.jpg"),
   ],
   [
     "02",
     "Sensory Interface",
     "Integrated cameras, optical sensors, and perception systems that help robotic systems interpret their surroundings.",
-    "/images/tech-02-sensory-interface.jpg",
+    asset("images/tech-02-sensory-interface.jpg"),
   ],
   [
     "03",
     "Adaptive Mechanics",
     "Precision actuators, articulated joints, and responsive mechanisms that enable controlled, adaptable movement.",
-    "/images/tech-03-adaptive-mechanics.jpg",
+    asset("images/tech-03-adaptive-mechanics.jpg"),
   ],
   [
     "04",
     "Material Integration",
     "Advanced composites, synthetic surfaces, and engineered materials that connect mechanical systems with a human-inspired exterior.",
-    "/images/tech-04-material-integration.jpg",
+    asset("images/tech-04-material-integration.jpg"),
   ],
 ]
 
@@ -452,21 +461,21 @@ const cases = [
     "KINEMATICS",
     "Movement Analysis",
     "Studying robotic gait, joint articulation, motion precision, and coordinated movement through controlled experiments.",
-    "/images/study-01-movement-analysis.jpg",
+    asset("images/study-01-movement-analysis.jpg"),
   ],
   [
     "2",
     "OPTICS",
     "Perception & Vision",
     "Investigating machine vision, optical sensing, and environmental perception for more precise robotic responses.",
-    "/images/study-02-perception-vision.jpg",
+    asset("images/study-02-perception-vision.jpg"),
   ],
   [
     "3",
     "SYNERGY",
     "Human–Robot Interaction",
     "Exploring controlled physical interaction between people and robotic systems through gripping, assistance, and responsive movement.",
-    "/images/study-03-human-robot-interaction.jpg",
+    asset("images/study-03-human-robot-interaction.jpg"),
   ],
 ]
 
@@ -557,7 +566,7 @@ function Anatomy() {
       <div className="anatomy-stage">
         <div className="anatomy-figure">
           <img
-            src="/nexform-hero.jfif"
+            src={asset("nexform-hero.jfif")}
             alt="Robotic humanoid profile system anatomy"
             className="anatomy-static-img"
           />
@@ -611,19 +620,19 @@ const applications = [
     "01",
     "Movement",
     "Exploring how engineered structures could complement natural motion.",
-    "/images/study-01-movement-analysis.jpg",
+    asset("images/study-01-movement-analysis.jpg"),
   ],
   [
     "02",
     "Perception",
     "Exploring new ways to interact with and interpret the surrounding environment.",
-    "/images/study-02-perception-vision.jpg",
+    asset("images/study-02-perception-vision.jpg"),
   ],
   [
     "03",
     "Endurance",
     "Exploring the relationship between human effort, adaptive systems, and physical support.",
-    "/images/tech-03-adaptive-mechanics.jpg",
+    asset("images/tech-03-adaptive-mechanics.jpg"),
   ],
 ]
 
@@ -663,7 +672,7 @@ const modes = [
   },
   {
     name: "Hybrid",
-    image: "/nexform-hero.jfif",
+    image: asset("nexform-hero.jfif"),
     text: "An intentional balance of natural instinct and responsive engineered structure.",
   },
   {
@@ -720,25 +729,25 @@ const materials = [
   [
     "Carbon Fiber",
     "Layered weave, low visual weight, and disciplined technical texture.",
-    "/images/tech-04-material-integration.jpg",
+    asset("images/tech-04-material-integration.jpg"),
     "MAT · 01 · COMPOSITE WEAVE",
   ],
   [
     "Titanium",
     "Brushed metal, precision-machined edges, and controlled reflection.",
-    "/images/tech-01-structural-support.jpg",
+    asset("images/tech-01-structural-support.jpg"),
     "MAT · 02 · GRADE-5 TITANIUM",
   ],
   [
     "Responsive Interfaces",
     "Tactile surfaces, restrained light, and human-centered interaction.",
-    "/images/study-02-perception-vision.jpg",
+    asset("images/study-02-perception-vision.jpg"),
     "MAT · 03 · OPTICAL SENSORS",
   ],
   [
     "Human-Centered Engineering",
     "Mechanical precision held in balance with the natural human form.",
-    "/images/study-03-human-robot-interaction.jpg",
+    asset("images/study-03-human-robot-interaction.jpg"),
     "MAT · 04 · SYNERGY KINETICS",
   ],
 ]
@@ -774,7 +783,12 @@ function Materials() {
 function Manifesto() {
   return (
     <section className="manifesto">
-      <div className="manifesto-image" />
+      <div
+        className="manifesto-image"
+        style={{
+          backgroundImage: `linear-gradient(90deg, var(--black), transparent 40%), url("${asset("images/study-02-perception-vision.jpg")}")`,
+        }}
+      />
       <div className="manifesto-content">
         <p className="eyebrow red">08 · THE PRINCIPLE</p>
         <h2>
@@ -796,7 +810,7 @@ const tiers = [
     "Discover the philosophy, principles, and design language behind NEXFORM.",
     "Explore Foundation",
     "#philosophy",
-    "/images/tier-01-foundation.jpg",
+    asset("images/tier-01-foundation.jpg"),
     "CRANIAL ARCHITECTURE · EXOSKELETON CORE",
   ],
   [
@@ -805,7 +819,7 @@ const tiers = [
     "Explore conceptual modules, engineered materials, and human-machine interaction.",
     "Explore Advanced",
     "#modules",
-    "/images/tier-02-advanced.jpg",
+    asset("images/tier-02-advanced.jpg"),
     "ARTICULATED MECHANISMS · ACTUATION ARRAY",
   ],
   [
@@ -814,7 +828,7 @@ const tiers = [
     "Start a conversation about tailored concepts and future integration possibilities.",
     "Discuss a Concept",
     "#connect",
-    "/images/tier-03-custom.jpg",
+    asset("images/tier-03-custom.jpg"),
     "INTEGRATED SENSORS · TAILORED ROBOTICS",
   ],
 ]
@@ -868,7 +882,7 @@ function Philosophy() {
       />
       <div className="duality">
         <ImageWithFallback
-          src="/images/philosophy-cybernetic-face.jpg"
+          src={asset("images/philosophy-cybernetic-face.jpg")}
           alt="Cybernetic humanoid robotic face and optical sensor"
         />
         <div className="duality-axis">
@@ -877,7 +891,7 @@ function Philosophy() {
           <span>M</span>
         </div>
         <ImageWithFallback
-          src="/images/tech-01-structural-support.jpg"
+          src={asset("images/tech-01-structural-support.jpg")}
           alt="Precision mechanical exoskeleton structure"
         />
       </div>
@@ -888,7 +902,12 @@ function Philosophy() {
 function FinalCta({ onConnect }: { onConnect: () => void }) {
   return (
     <section className="final-cta">
-      <div className="final-image" />
+      <div
+        className="final-image"
+        style={{
+          backgroundImage: `linear-gradient(90deg, rgba(0,0,0,.95), rgba(0,0,0,.1)), linear-gradient(0deg, rgba(0,0,0,.8), transparent 50%), url("${asset("nexform-hero.jfif")}")`,
+        }}
+      />
       <div className="final-content">
         <p className="eyebrow">NEXFORM · CONTINUUM</p>
         <h2>The next version begins with you.</h2>
