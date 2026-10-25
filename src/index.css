@@ -1394,3 +1394,112 @@ h1, h2, h3, h4, h5, h6,
   border-color: var(--red) !important;
   transform: translateY(-2px);
 }
+
+
+/* =============================================================
+   Footer White Background Theme & Removal of Spec/Outcome Tags
+   ============================================================= */
+
+/* Completely hide any outcome/spec tags */
+.application-outcome-tag,
+.module-spec-tag,
+.module-spec-badge {
+  display: none !important;
+}
+
+/* White Theme for Site Footer */
+.site-footer {
+  background: var(--white) !important;
+  color: var(--black) !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.footer-brand-name {
+  color: var(--black) !important;
+}
+
+.footer-status-pill {
+  background: #f4f4f7 !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  color: #555560 !important;
+}
+
+.footer-tagline {
+  color: #555560 !important;
+}
+
+.footer-social-heading {
+  color: var(--red) !important;
+  font-weight: 700;
+}
+
+.social-btn {
+  background: #f4f4f7 !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  color: #222226 !important;
+}
+.social-btn svg {
+  color: #44444a !important;
+}
+.social-btn:hover {
+  background: var(--red) !important;
+  border-color: var(--red) !important;
+  box-shadow: 0 4px 14px rgba(255, 48, 56, .25) !important;
+}
+.social-btn:hover svg {
+  color: #ffffff !important;
+}
+
+.footer-col-title {
+  color: var(--red) !important;
+  font-weight: 700 !important;
+}
+
+.footer-col a,
+.footer-text-link,
+.footer-text-btn {
+  color: #555560 !important;
+}
+.footer-col a:hover,
+.footer-text-link:hover,
+.footer-text-btn:hover {
+  color: var(--black) !important;
+}
+
+.newsletter-copy {
+  color: #555560 !important;
+}
+
+.newsletter-input-wrap input {
+  background: #ffffff !important;
+  color: var(--black) !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+.newsletter-input-wrap input:focus {
+  border-color: var(--red) !important;
+}
+
+.newsletter-submit {
+  background: #09090b !important;
+  color: var(--white) !important;
+  border-radius: 14px !important;
+}
+.newsletter-submit:hover {
+  background: var(--red) !important;
+}
+
+.footer-bottom-strip {
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+  color: #71717a !important;
+}
+
+.footer-coords {
+  color: #8c8c96 !important;
+}
+
+.footer-back-top {
+  color: #44444a !important;
+}
+.footer-back-top:hover {
+  color: var(--red) !important;
+}

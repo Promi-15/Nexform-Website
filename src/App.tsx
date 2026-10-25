@@ -457,9 +457,6 @@ function Modules() {
               </div>
               <h3>{title}</h3>
               <p>{copy}</p>
-              <div className="module-spec-tag">
-                <span>{badge}</span>
-              </div>
             </div>
           </article>
         ))}
@@ -710,9 +707,7 @@ function Applications() {
               <p className="eyebrow">{title} · FIELD OUTCOME</p>
               <h3>{title}</h3>
               <p>{copy}</p>
-              <div className="application-outcome-tag">
-                <span>{outcome}</span>
-              </div>
+
               <a href="#demo" className="application-cta">
                 <span>See how it works</span>
                 <ArrowRight size={16} />
