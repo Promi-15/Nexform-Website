@@ -1,6 +1,5 @@
 import { FormEvent, ReactNode, useEffect, useRef, useState } from "react"
 import {
-  ArrowDownRight,
   ArrowRight,
   Check,
   ChevronRight,
@@ -8,14 +7,14 @@ import {
   X,
 } from "lucide-react"
 
-const ALT_HERO =
-  "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260609_135737_0da59642-725b-451a-997b-b0283d95a42a.png&w=1280&q=85"
-
 const BASE = import.meta.env.BASE_URL || "/"
 const asset = (path: string) =>
   path.startsWith("http")
     ? path
     : `${BASE.endsWith("/") ? BASE : `${BASE}/`}${path.replace(/^\.?\//, "")}`
+
+const ALT_HERO =
+  "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260609_135737_0da59642-725b-451a-997b-b0283d95a42a.png&w=1280&q=85"
 
 const images = {
   portrait: asset("images/philosophy-cybernetic-face.jpg"),
@@ -326,7 +325,7 @@ function Hero({ onConnect }: { onConnect: () => void }) {
     <section className="hero" id="top" ref={heroRef}>
       <div
         className="hero-base"
-        style={{ backgroundImage: `url("${asset("nexform-hero.jfif")}")` }}
+        style={{ backgroundImage: `url("${asset("nexform-hero-new.jpg")}")` }}
       />
       <div
         className="hero-alt"
@@ -352,7 +351,7 @@ function Hero({ onConnect }: { onConnect: () => void }) {
           machine. Not human. Something wonderfully poised between.
         </p>
         <button className="hero-cta hero-rise delay-4" onClick={onConnect}>
-          <span>Reserve now</span> <ArrowDownRight size={18} />
+          <span>Reserve now</span> <ArrowRight size={18} />
         </button>
       </div>
       <div className="hero-index">N·F · 001</div>
@@ -408,25 +407,25 @@ const modules = [
     "01",
     "Structural Support",
     "Engineered frameworks, robotic exoskeletons, articulated supports, and mechanical structures designed to complement the human form.",
-    asset("images/tech-01-structural-support.jpg"),
+    asset("images/user-module-01.png"),
   ],
   [
     "02",
     "Sensory Interface",
     "Integrated cameras, optical sensors, and perception systems that help robotic systems interpret their surroundings.",
-    asset("images/tech-02-sensory-interface.jpg"),
+    asset("images/user-module-02.png"),
   ],
   [
     "03",
     "Adaptive Mechanics",
     "Precision actuators, articulated joints, and responsive mechanisms that enable controlled, adaptable movement.",
-    asset("images/tech-03-adaptive-mechanics.jpg"),
+    asset("images/user-module-03.png"),
   ],
   [
     "04",
     "Material Integration",
     "Advanced composites, synthetic surfaces, and engineered materials that connect mechanical systems with a human-inspired exterior.",
-    asset("images/tech-04-material-integration.jpg"),
+    asset("images/user-module-04.png"),
   ],
 ]
 
@@ -446,7 +445,7 @@ function Modules() {
               <span>{number} · CONCEPT</span>
               <h3>{title}</h3>
               <p>{copy}</p>
-              <ArrowDownRight size={20} />
+              <ArrowRight size={20} />
             </div>
           </article>
         ))}
@@ -566,7 +565,7 @@ function Anatomy() {
       <div className="anatomy-stage">
         <div className="anatomy-figure">
           <img
-            src={asset("nexform-hero.jfif")}
+            src={asset("nexform-hero-new.jpg")}
             alt="Robotic humanoid profile system anatomy"
             className="anatomy-static-img"
           />
@@ -632,7 +631,7 @@ const applications = [
     "03",
     "Endurance",
     "Exploring the relationship between human effort, adaptive systems, and physical support.",
-    asset("images/tech-03-adaptive-mechanics.jpg"),
+    asset("images/anatomy-01-structural.jpg"),
   ],
 ]
 
@@ -672,7 +671,7 @@ const modes = [
   },
   {
     name: "Hybrid",
-    image: asset("nexform-hero.jfif"),
+    image: asset("nexform-hero-new.jpg"),
     text: "An intentional balance of natural instinct and responsive engineered structure.",
   },
   {
@@ -728,26 +727,26 @@ function LiveDemo() {
 const materials = [
   [
     "Carbon Fiber",
-    "Layered weave, low visual weight, and disciplined technical texture.",
-    asset("images/tech-04-material-integration.jpg"),
+    "High-modulus 1K carbon weave matrix impregnated with toughened epoxy resin. Engineered for minimal rotational inertia and maximum torsional stiffness under high-frequency kinematic loads.",
+    asset("images/user-module-04.png"),
     "MAT · 01 · COMPOSITE WEAVE",
   ],
   [
     "Titanium",
-    "Brushed metal, precision-machined edges, and controlled reflection.",
-    asset("images/tech-01-structural-support.jpg"),
+    "Aerospace-grade Ti-6Al-4V alloy, 5-axis CNC-machined to sub-micron tolerances. Combines exceptional strength-to-density ratio with biocompatible corrosion immunity.",
+    asset("images/user-module-01.png"),
     "MAT · 02 · GRADE-5 TITANIUM",
   ],
   [
     "Responsive Interfaces",
-    "Tactile surfaces, restrained light, and human-centered interaction.",
-    asset("images/study-02-perception-vision.jpg"),
+    "Sapphire-crystal optical apertures with anti-reflective nanocoatings. Integrates 850nm infrared depth tracking and sub-millimeter tactile feedback for real-time spatial awareness.",
+    asset("images/user-module-02.png"),
     "MAT · 03 · OPTICAL SENSORS",
   ],
   [
     "Human-Centered Engineering",
-    "Mechanical precision held in balance with the natural human form.",
-    asset("images/study-03-human-robot-interaction.jpg"),
+    "High-torque brushless coreless micro-servos paired with harmonic strain-wave gearing, delivering compliant, natural movement that mirrors human musculoskeletal kinetics.",
+    asset("images/user-module-03.png"),
     "MAT · 04 · SYNERGY KINETICS",
   ],
 ]
@@ -891,8 +890,8 @@ function Philosophy() {
           <span>M</span>
         </div>
         <ImageWithFallback
-          src={asset("images/tech-01-structural-support.jpg")}
-          alt="Precision mechanical exoskeleton structure"
+          src={asset("images/study-03-human-robot-interaction.jpg")}
+          alt="Human intelligence and robotic interaction interface"
         />
       </div>
     </section>
@@ -905,7 +904,7 @@ function FinalCta({ onConnect }: { onConnect: () => void }) {
       <div
         className="final-image"
         style={{
-          backgroundImage: `linear-gradient(90deg, rgba(0,0,0,.95), rgba(0,0,0,.1)), linear-gradient(0deg, rgba(0,0,0,.8), transparent 50%), url("${asset("nexform-hero.jfif")}")`,
+          backgroundImage: `linear-gradient(90deg, #050505 0%, rgba(5,5,5,0.92) 28%, rgba(5,5,5,0.2) 60%, transparent 85%), linear-gradient(0deg, #050505 0%, transparent 25%), url("${asset("images/final-cta-robot-seamless.png")}")`,
         }}
       />
       <div className="final-content">
