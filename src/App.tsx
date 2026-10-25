@@ -922,13 +922,6 @@ const tiers = [
 ]
 
 function SocialProof() {
-  const stats = [
-    { value: "[120+]", label: "deployments" },
-    { value: "[8]", label: "years of research" },
-    { value: "[15]", label: "countries" },
-    { value: "[98%]", label: "user satisfaction" },
-  ]
-
   return (
     <section className="section social-proof-section" id="social-proof">
       <SectionHeader
@@ -936,15 +929,6 @@ function SocialProof() {
         title="Trusted by teams building the future."
         copy="Engineered in collaboration with leading robotic laboratories, clinical specialists, and endurance pioneers worldwide."
       />
-
-      <div className="social-stats-grid">
-        {stats.map((s, idx) => (
-          <div key={idx} className="social-stat-card">
-            <span className="social-stat-value">{s.value}</span>
-            <span className="social-stat-label">{s.label}</span>
-          </div>
-        ))}
-      </div>
 
       <div className="testimonials-grid">
         <div className="testimonial-card">
