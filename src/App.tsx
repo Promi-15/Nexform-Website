@@ -1,4 +1,5 @@
 import { FormEvent, ReactNode, useEffect, useRef, useState } from "react"
+import { BehanceShowcase } from "./BehanceShowcase"
 import {
   ArrowRight,
   Check,
@@ -1460,6 +1461,38 @@ export default function App() {
   const [contact, setContact] = useState(false)
   const [caseIndex, setCaseIndex] = useState<number | null>(null)
   const [legal, setLegal] = useState<"Privacy" | "Terms" | null>(null)
+  const [viewMode, setViewMode] = useState<"site" | "behance">(() => {
+    if (typeof window !== "undefined") {
+      const hash = window.location.hash.toLowerCase()
+      const search = new URLSearchParams(window.location.search).get("view")
+      return hash === "#behance" || search === "behance" ? "behance" : "site"
+    }
+    return "site"
+  })
+
+  useEffect(() => {
+    const handleHash = () => {
+      if (window.location.hash.toLowerCase() === "#behance") {
+        setViewMode("behance")
+      } else if (window.location.hash === "#site" || window.location.hash === "") {
+        setViewMode("site")
+      }
+    }
+    window.addEventListener("hashchange", handleHash)
+    return () => window.removeEventListener("hashchange", handleHash)
+  }, [])
+
+  if (viewMode === "behance") {
+    return (
+      <BehanceShowcase
+        onBackToSite={() => {
+          setViewMode("site")
+          window.location.hash = ""
+        }}
+      />
+    )
+  }
+
   return (
     <>
       <Nav onConnect={() => setContact(true)} />
@@ -1501,6 +1534,34 @@ export default function App() {
           </p>
         </Dialog>
       )}
+      {/* Floating Behance Case Study Trigger */}
+      <div style={{ position: "fixed", bottom: "24px", right: "24px", zIndex: 9999 }}>
+        <button
+          type="button"
+          onClick={() => {
+            setViewMode("behance")
+            window.location.hash = "behance"
+          }}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "10px",
+            padding: "12px 20px",
+            borderRadius: "9999px",
+            background: "linear-gradient(135deg, #e11d48, #be123c)",
+            color: "#ffffff",
+            fontWeight: "600",
+            fontSize: "13px",
+            boxShadow: "0 10px 25px -5px rgba(225, 29, 72, 0.5)",
+            border: "1px solid rgba(255, 255, 255, 0.2)",
+            cursor: "pointer",
+            transition: "all 0.2s ease"
+          }}
+        >
+          <span style={{ width: "8px", height: "8px", borderRadius: "9999px", backgroundColor: "#ffffff" }} />
+          <span>🎨 Behance Presentation Mode</span>
+        </button>
+      </div>
     </>
   )
 }
