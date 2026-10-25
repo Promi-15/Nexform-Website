@@ -194,7 +194,7 @@ h1, h2, h3, h4, h5, h6,
 .image-shell { position: relative; overflow: hidden; background: var(--charcoal); }
 .image-shell img { height: 100%; width: 100%; object-fit: cover; object-position: top center; transition: transform .7s cubic-bezier(.16,1,.3,1), filter .4s; }
 .image-shell:hover img { transform: scale(1.035); }
-.image-code { position: absolute; left: 14px; bottom: 12px; padding: 7px 11px; background: rgba(0,0,0,.75); backdrop-filter: blur(8px); color: rgba(255,255,255,.85); font: 600 14px/1 "JetBrains Mono"; letter-spacing: .12em; }
+.image-code { display: none !important; }
 .image-failed { background: repeating-linear-gradient(135deg, var(--charcoal), var(--charcoal) 8px, var(--surface) 8px, var(--surface) 9px); }
 
 /* Section 01: Philosophy */

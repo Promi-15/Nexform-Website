@@ -397,7 +397,6 @@ function ImageWithFallback({
           onError={() => setFailed(true)}
         />
       )}
-      <span className="image-code">NEXFORM · VISUAL STUDY</span>
     </div>
   )
 }
