@@ -451,11 +451,15 @@ function Modules() {
             <div className="module-copy">
               <div className="module-top-row">
                 <span>{number} · CONCEPT</span>
-                <span className="module-spec-badge">{badge}</span>
+                <div className="module-arrow">
+                  <ArrowRight size={18} />
+                </div>
               </div>
               <h3>{title}</h3>
               <p>{copy}</p>
-              <ArrowRight size={20} />
+              <div className="module-spec-tag">
+                <span>{badge}</span>
+              </div>
             </div>
           </article>
         ))}
@@ -923,13 +927,6 @@ const tiers = [
 ]
 
 function SocialProof() {
-  const logos = [
-    { name: "[Client logo 1]", label: "BioKinetics Research" },
-    { name: "[Client logo 2]", label: "Apex Human Dynamics" },
-    { name: "[Client logo 3]", label: "NeuroGait Systems" },
-    { name: "[Client logo 4]", label: "OrthoRobotics Global" },
-  ]
-
   const stats = [
     { value: "[120+]", label: "deployments" },
     { value: "[8]", label: "years of research" },
@@ -944,17 +941,6 @@ function SocialProof() {
         title="Trusted by teams building the future."
         copy="Engineered in collaboration with leading robotic laboratories, clinical specialists, and endurance pioneers worldwide."
       />
-      <div className="client-logos-row">
-        {logos.map((logo, idx) => (
-          <div key={idx} className="client-logo-pill">
-            <span className="logo-placeholder-icon">✦</span>
-            <div className="client-logo-text">
-              <strong>{logo.name}</strong>
-              <small>{logo.label}</small>
-            </div>
-          </div>
-        ))}
-      </div>
 
       <div className="social-stats-grid">
         {stats.map((s, idx) => (
@@ -969,7 +955,7 @@ function SocialProof() {
         <div className="testimonial-card">
           <span className="testimonial-quote-mark">“</span>
           <blockquote>
-            “[Real quote about how NEXTFORM improved their work.]”
+            “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.”
           </blockquote>
           <div className="testimonial-author">
             <strong>[Name, Role, Company]</strong>
@@ -979,7 +965,7 @@ function SocialProof() {
         <div className="testimonial-card">
           <span className="testimonial-quote-mark">“</span>
           <blockquote>
-            “[Real quote about comfort, reliability or support.]”
+            “Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.”
           </blockquote>
           <div className="testimonial-author">
             <strong>[Name, Role, Company]</strong>

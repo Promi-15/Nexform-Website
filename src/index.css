@@ -163,8 +163,8 @@ h1, h2, h3, h4, h5, h6,
 }
 .eyebrow em { color: var(--white); text-transform: none; letter-spacing: 0; }
 .eyebrow.red { color: var(--red); }
-.hero h1 { margin: 0; font-size: clamp(54px, 6.8vw, 104px); line-height: .92; letter-spacing: -.05em; font-family: "Inter", sans-serif; }
-.hero-copy { max-width: 525px; margin: 26px 0 28px; color: rgba(245,245,243,.85); font-size: 16px !important; line-height: 1.65; }
+.hero h1 { margin: 0; font-size: clamp(36px, 4.2vw, 58px); line-height: 1.12; letter-spacing: -.035em; max-width: 650px; font-family: "Inter", sans-serif; }
+.hero-copy { max-width: 480px; margin: 20px 0 24px; color: rgba(240,240,245,.85); font-size: 15px !important; line-height: 1.6; }
 .hero-cta, .button-link {
   display: inline-flex; align-items: center; justify-content: space-between; gap: 32px; min-width: 176px;
   border: 1px solid var(--white); border-radius: 99px; padding: 14px 22px; background: var(--white);
@@ -1241,4 +1241,156 @@ h1, h2, h3, h4, h5, h6,
 @media (max-width: 600px) {
   .process-pipeline { grid-template-columns: 1fr; }
   .social-stats-grid { grid-template-columns: 1fr; }
+}
+
+
+/* =============================================================
+   User Refinements: CTA Radius 14px, FAQ White, Hero Sizing, Card Tags
+   ============================================================= */
+
+/* 1. Global CTA Rounded 14px */
+.hero-cta,
+.hero-secondary-cta,
+.button-link,
+.button-link.secondary,
+.connect-small,
+.application-cta,
+.tier-cta-btn,
+.tier-matrix-btn,
+.newsletter-submit,
+.final-actions .button-link,
+.faq-footer-cta .button-link,
+.mode-selector button,
+.dialog-body button,
+.social-btn {
+  border-radius: 14px !important;
+}
+
+/* 2. Hero Section Typography Refinement */
+.hero .eyebrow {
+  font-size: 13px !important;
+  letter-spacing: .12em !important;
+  margin-bottom: 16px !important;
+}
+
+/* 3. Module Card Tag & Arrow Fix (No Overlap) */
+.module-copy {
+  padding: 32px;
+}
+.module-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.module-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  transition: transform .3s, background .3s, color .3s, border-color .3s;
+}
+.module:hover .module-arrow {
+  transform: translateX(4px);
+  background: var(--red);
+  border-color: var(--red);
+  color: #ffffff;
+}
+.module-copy svg {
+  position: static !important;
+}
+.module-spec-tag {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 14px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 59, 48, 0.3);
+  border-radius: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ff3b30;
+  letter-spacing: .04em;
+  backdrop-filter: blur(6px);
+}
+.module-spec-badge {
+  display: none !important;
+}
+
+/* 4. Applications Outcome Tag Refinement */
+.application-outcome-tag {
+  display: inline-flex;
+  align-items: center;
+  margin: 14px 0 22px;
+  padding: 7px 16px;
+  background: #f3f3f6 !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: 14px !important;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e02424 !important;
+  letter-spacing: .02em;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+/* 5. FAQ White Background Theme */
+.faq-section {
+  background: var(--white) !important;
+  color: var(--black) !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+.faq-section .section-header {
+  width: min(1360px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+.faq-section .section-header h2 {
+  color: var(--black) !important;
+}
+.faq-section .section-copy {
+  color: #555560 !important;
+}
+.faq-item {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.09) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  transition: all .25s ease;
+}
+.faq-item:hover,
+.faq-item.open {
+  border-color: rgba(255, 48, 56, 0.5) !important;
+  background: #ffffff !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+}
+.faq-question-btn {
+  color: var(--black) !important;
+  font-weight: 600;
+}
+.faq-toggle-icon {
+  color: var(--red) !important;
+}
+.faq-answer p {
+  color: #555560 !important;
+}
+.faq-footer-cta p {
+  color: #666670 !important;
+}
+.faq-footer-cta .button-link.secondary {
+  background: #09090b !important;
+  color: var(--white) !important;
+  border: 1px solid #09090b !important;
+  border-radius: 14px !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+.faq-footer-cta .button-link.secondary:hover {
+  background: var(--red) !important;
+  border-color: var(--red) !important;
+  transform: translateY(-2px);
 }
