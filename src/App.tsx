@@ -27,11 +27,11 @@ const images = {
 }
 
 const navItems = [
-  ["Module", "modules"],
-  ["Case Records", "cases"],
-  ["Biotech", "biotech"],
-  ["Tiers", "tiers"],
-  ["Live Demo", "demo"],
+  ["Technology", "modules"],
+  ["Materials", "biotech"],
+  ["Applications", "applications"],
+  ["Explore", "demo"],
+  ["FAQ", "faq"],
 ]
 
 function Logo() {
@@ -75,7 +75,7 @@ function Nav({ onConnect }: { onConnect: () => void }) {
           </a>
         ))}
         <button className="connect-small" onClick={onConnect}>
-          Connect
+          Book a demo
         </button>
       </div>
       <a className="mobile-logo" href="#top">
@@ -337,22 +337,26 @@ function Hero({ onConnect }: { onConnect: () => void }) {
       <StatsArcs />
       <div className="hero-content">
         <p className="eyebrow hero-rise delay-1">
-          Gateway to your <em>augmented self</em>
+          NEXTFORM · <em>ADVANCED ROBOTICS</em>
         </p>
         <h1 className="hero-rise delay-2">
-          A window
+          Robotic systems
           <br />
-          of coming
+          built around
           <br />
-          enhancements
+          human capability.
         </h1>
         <p className="hero-copy hero-rise delay-3">
-          A future where carbon fiber, titanium, and human instinct align. Not
-          machine. Not human. Something wonderfully poised between.
+          NEXTFORM designs adaptive robotic structures that extend human strength, precision and endurance. Built for engineers, clinicians and teams who need technology that works with people.
         </p>
-        <button className="hero-cta hero-rise delay-4" onClick={onConnect}>
-          <span>Reserve now</span> <ArrowRight size={18} />
-        </button>
+        <div className="hero-actions hero-rise delay-4">
+          <button className="hero-cta" onClick={onConnect}>
+            <span>Book a demo</span> <ArrowRight size={18} />
+          </button>
+          <a className="button-link secondary hero-secondary-cta" href="#biotech">
+            <span>Explore materials</span> <ArrowRight size={16} />
+          </a>
+        </div>
       </div>
       <div className="hero-index">N·F · 001</div>
     </section>
@@ -405,25 +409,29 @@ const modules = [
   [
     "01",
     "Structural Support",
-    "Engineered frameworks, robotic exoskeletons, articulated supports, and mechanical structures designed to complement the human form.",
+    "Lightweight frames that carry load where the body needs it.",
+    "[40% lighter than standard frames]",
     asset("images/user-module-01.png"),
   ],
   [
     "02",
     "Sensory Interface",
-    "Integrated cameras, optical sensors, and perception systems that help robotic systems interpret their surroundings.",
+    "Sensors that read movement and respond in real time.",
+    "[Response time under 10 ms]",
     asset("images/user-module-02.png"),
   ],
   [
     "03",
     "Adaptive Mechanics",
-    "Precision actuators, articulated joints, and responsive mechanisms that enable controlled, adaptable movement.",
+    "Joints that adjust to each user’s motion and pace.",
+    "[X degrees of freedom]",
     asset("images/user-module-03.png"),
   ],
   [
     "04",
     "Material Integration",
-    "Advanced composites, synthetic surfaces, and engineered materials that connect mechanical systems with a human-inspired exterior.",
+    "Advanced materials that balance strength, weight and comfort.",
+    "[Rated for X hours of continuous use]",
     asset("images/user-module-04.png"),
   ],
 ]
@@ -434,14 +442,17 @@ function Modules() {
       <SectionHeader
         eyebrow="02 · TECHNOLOGY & SYSTEMS"
         title="Engineered around human potential."
-        copy="A modular vision of augmentation, where each robotic system is designed to complement the person it serves."
+        copy="Four core systems, each designed to work as one."
       />
       <div className="modules-grid">
-        {modules.map(([number, title, copy, image], index) => (
+        {modules.map(([number, title, copy, badge, image], index) => (
           <article className={`module module-${index + 1}`} key={number}>
             <ImageWithFallback src={image} alt={title} />
             <div className="module-copy">
-              <span>{number} · CONCEPT</span>
+              <div className="module-top-row">
+                <span>{number} · CONCEPT</span>
+                <span className="module-spec-badge">{badge}</span>
+              </div>
               <h3>{title}</h3>
               <p>{copy}</p>
               <ArrowRight size={20} />
@@ -452,6 +463,29 @@ function Modules() {
     </section>
   )
 }
+
+const processSteps = [
+  {
+    step: "01",
+    title: "Design",
+    copy: "We map your needs and model the system around them.",
+  },
+  {
+    step: "02",
+    title: "Prototype",
+    copy: "Working builds you can test within weeks.",
+  },
+  {
+    step: "03",
+    title: "Test",
+    copy: "Strict testing for safety, comfort and performance.",
+  },
+  {
+    step: "04",
+    title: "Deploy",
+    copy: "Delivery, training and ongoing support.",
+  },
+]
 
 const cases = [
   [
@@ -480,7 +514,24 @@ const cases = [
 function Cases({ onSelect }: { onSelect: (index: number) => void }) {
   return (
     <section className="section case-section" id="cases">
-      <SectionHeader eyebrow="03 · RESEARCH & STUDIES" title="Ideas take form." />
+      <SectionHeader
+        eyebrow="03 · PROCESS & RESEARCH"
+        title="Ideas take form."
+        copy="From first concept to working system, in four clear steps."
+      />
+      <div className="process-pipeline">
+        {processSteps.map((p) => (
+          <div key={p.step} className="process-step-card">
+            <span className="process-step-num">{p.step}</span>
+            <h4>{p.title}</h4>
+            <p>{p.copy}</p>
+          </div>
+        ))}
+      </div>
+      <div className="case-section-subhead">
+        <span className="case-subhead-pill">SUPPORTING STUDIES</span>
+        <p>Explore empirical research records and kinematic evaluations behind each stage.</p>
+      </div>
       <div className="case-grid">
         {cases.map(([number, category, title, copy, image], index) => (
           <button
@@ -518,30 +569,30 @@ const anatomyItems: AnatomyItem[] = [
   {
     number: "01",
     title: "Structural Support",
-    copy: "Exploring how engineered frameworks provide alignment, stability, and structural integrity.",
-    tag: "CRANIAL CHASSIS & SKELETAL FRAME",
-    telemetry: "SYS · CHASSIS_01 · TITANIUM EXOSKELETON · STABILITY: 99.8%",
+    copy: "Carries load and keeps posture stable.",
+    tag: "LOAD-BEARING CHASSIS",
+    telemetry: "SYS · SUPPORT_01 · POSTURE STABILITY ACTIVE",
   },
   {
     number: "02",
     title: "Sensory Interface",
-    copy: "Integrated cameras and sensors interpret the environment and provide the input required for precise responses.",
-    tag: "MULTI-SPECTRAL OCULAR SENSOR",
-    telemetry: "SYS · OPTIC_02 · 4K LIDAR DEPTH ARRAY · SPECTRUM: 850NM",
+    copy: "Tracks motion and adjusts instantly.",
+    tag: "REAL-TIME SENSORY TRACKING",
+    telemetry: "SYS · SENSORY_02 · TRACKING LATENCY < 10MS",
   },
   {
     number: "03",
     title: "Adaptive Mechanics",
-    copy: "Articulated joints and precision actuators enable controlled movement and responsive mechanical behavior.",
-    tag: "CERVICAL HYDRAULIC ACTUATORS",
-    telemetry: "SYS · KINETIC_03 · 6-AXIS MICRO-SERVOS · TORQUE: 18.4 NM",
+    copy: "Learns and matches the user’s movement.",
+    tag: "ADAPTIVE KINEMATICS",
+    telemetry: "SYS · KINETIC_03 · PREDICTIVE MOTOR GAIT MATCH",
   },
   {
     number: "04",
     title: "Material Integration",
-    copy: "Advanced surfaces and protective materials connect mechanical precision with a human-inspired exterior.",
-    tag: "CARBON COMPOSITE SYNTHETIC SHELL",
-    telemetry: "SYS · MAT_04 · WOVEN FIBER + SILICONE · TENSION: 420 MPA",
+    copy: "Keeps the system light, strong and comfortable.",
+    tag: "ADVANCED COMPOSITE MATRIX",
+    telemetry: "SYS · MAT_04 · COMPOSITE WEAVE INTEGRITY 100%",
   },
 ]
 
@@ -558,8 +609,9 @@ function Anatomy() {
   return (
     <section className="section anatomy-section" id="anatomy">
       <SectionHeader
-        eyebrow="04 · SYSTEM ANATOMY"
+        eyebrow="04 · SYSTEM ARCHITECTURE"
         title="Precision, placed with purpose."
+        copy="Click each point to see what it does."
       />
       <div className="anatomy-stage">
         <div className="anatomy-figure">
@@ -617,41 +669,48 @@ const applications = [
   [
     "01",
     "Movement",
-    "Exploring how engineered structures could complement natural motion.",
+    "Support that follows your motion, not the other way around.",
+    "Outcome: [X% less fatigue in lifting tasks]",
     asset("images/study-01-movement-analysis.jpg"),
   ],
   [
     "02",
     "Perception",
-    "Exploring new ways to interact with and interpret the surrounding environment.",
+    "Sensing that gives users more awareness of their environment.",
+    "Outcome: [X% faster reaction in field tests]",
     asset("images/study-02-perception-vision.jpg"),
   ],
   [
     "03",
     "Endurance",
-    "Exploring the relationship between human effort, adaptive systems, and physical support.",
+    "Systems built to keep going long after the body tires.",
+    "Outcome: [X hours of use per charge]",
     asset("images/anatomy-01-structural.jpg"),
   ],
 ]
 
 function Applications() {
   return (
-    <section className="section applications">
+    <section className="section applications" id="applications">
       <SectionHeader
         eyebrow="05 · HUMAN APPLICATIONS"
         title="Designed around human capability."
+        copy="Three focused outcomes where intelligent robotics directly elevate human capacity."
       />
       <div className="application-list">
-        {applications.map(([number, title, copy, image], index) => (
+        {applications.map(([number, title, copy, outcome, image], index) => (
           <article key={title} className={index % 2 ? "reverse" : ""}>
             <ImageWithFallback src={image} alt={`${title} concept study`} />
             <div className="application-copy">
               <span className="huge-number">{number}</span>
-              <p className="eyebrow">{title} · FIELD STUDY</p>
+              <p className="eyebrow">{title} · FIELD OUTCOME</p>
               <h3>{title}</h3>
               <p>{copy}</p>
+              <div className="application-outcome-tag">
+                <span>{outcome}</span>
+              </div>
               <a href="#demo" className="application-cta">
-                <span>View application</span>
+                <span>See how it works</span>
                 <ArrowRight size={16} />
               </a>
             </div>
@@ -664,19 +723,19 @@ function Applications() {
 
 const modes = [
   {
-    name: "Human",
+    name: "Human only",
     image: images.portraitDark,
-    text: "Biological intelligence, intuition, and identity remain the point of origin.",
+    text: "Biological intelligence, intuition, and natural body dynamics remain in control.",
   },
   {
     name: "Hybrid",
     image: asset("nexform-hero-new.jpg"),
-    text: "An intentional balance of natural instinct and responsive engineered structure.",
+    text: "The human stays in control. The system adds strength, steadiness and precision when needed.",
   },
   {
-    name: "Machine",
+    name: "Machine assist",
     image: images.material,
-    text: "Precision material, repeatable movement, and controlled mechanical response.",
+    text: "Controlled mechanical response, full load offloading, and maximum continuous robotic assist.",
   },
 ]
 
@@ -687,8 +746,8 @@ function LiveDemo() {
       <div className="section">
         <SectionHeader
           eyebrow="06 · INTERACTIVE EXPERIENCE"
-          title="Explore the space between."
-          copy="A visual exploration of the changing relationship between the human form and engineered systems."
+          title="Explore the space between human and machine."
+          copy="Switch between modes to see how Hybrid adapts."
         />
         <div className="demo-stage">
           <img
@@ -726,28 +785,35 @@ function LiveDemo() {
 const materials = [
   [
     "Carbon Fiber",
-    "High-modulus 1K carbon weave matrix impregnated with toughened epoxy resin. Engineered for minimal rotational inertia and maximum torsional stiffness under high-frequency kinematic loads.",
+    "Very high strength at very low weight.",
     asset("images/user-module-04.png"),
-    "MAT · 01 · COMPOSITE WEAVE",
+    "MAT · 01 · ULTRA-LIGHT COMPOSITE",
   ],
   [
     "Titanium",
-    "Aerospace-grade Ti-6Al-4V alloy, 5-axis CNC-machined to sub-micron tolerances. Combines exceptional strength-to-density ratio with biocompatible corrosion immunity.",
+    "Durable, corrosion resistant and safe for long skin contact.",
     asset("images/user-module-01.png"),
-    "MAT · 02 · GRADE-5 TITANIUM",
+    "MAT · 02 · BIOCOMPATIBLE ALLOY",
   ],
   [
     "Responsive Interfaces",
-    "Sapphire-crystal optical apertures with anti-reflective nanocoatings. Integrates 850nm infrared depth tracking and sub-millimeter tactile feedback for real-time spatial awareness.",
+    "Surfaces that sense touch and pressure.",
     asset("images/user-module-02.png"),
-    "MAT · 03 · OPTICAL SENSORS",
+    "MAT · 03 · TACTILE & OPTICAL",
   ],
   [
     "Human-Centered Engineering",
-    "High-torque brushless coreless micro-servos paired with harmonic strain-wave gearing, delivering compliant, natural movement that mirrors human musculoskeletal kinetics.",
+    "Shapes tested on real users for comfort.",
     asset("images/user-module-03.png"),
-    "MAT · 04 · SYNERGY KINETICS",
+    "MAT · 04 · ERGONOMIC COMPLIANCE",
   ],
+]
+
+const materialSpecs = [
+  { material: "Carbon Fiber", weight: "Ultra-low (1.75 g/cm³)", strength: "Very high (3,500+ MPa)", bestFor: "High-velocity articulated limbs & exoskeletons" },
+  { material: "Titanium (Ti-6Al-4V)", weight: "Medium-low (4.43 g/cm³)", strength: "High (880 MPa)", bestFor: "Load-bearing chassis, joint hinges & skin contact" },
+  { material: "Responsive Interfaces", weight: "Featherweight polymer", strength: "High fatigue resilience", bestFor: "Touch/pressure surfaces & optical depth sensors" },
+  { material: "Human-Centered Engineering", weight: "Ergonomic composite", strength: "Adaptive compliance", bestFor: "Shapes tested on real users for all-day comfort" },
 ]
 
 function Materials() {
@@ -756,7 +822,7 @@ function Materials() {
       <SectionHeader
         eyebrow="07 · MATERIAL INTELLIGENCE"
         title="Precision in every material."
-        copy="Every material tells a different story about strength, flexibility, texture, and the relationship between human form and engineered systems."
+        copy="Every material is chosen for a reason."
       />
       <div className="material-grid">
         {materials.map(([title, copy, image, tag], index) => (
@@ -773,6 +839,31 @@ function Materials() {
             </div>
           </article>
         ))}
+      </div>
+      <div className="material-table-container">
+        <h4 className="material-table-title">Material Specifications</h4>
+        <div className="material-table-wrap">
+          <table className="material-table">
+            <thead>
+              <tr>
+                <th>Material</th>
+                <th>Weight</th>
+                <th>Strength</th>
+                <th>Best for</th>
+              </tr>
+            </thead>
+            <tbody>
+              {materialSpecs.map((row) => (
+                <tr key={row.material}>
+                  <td className="mat-name"><strong>{row.material}</strong></td>
+                  <td>{row.weight}</td>
+                  <td>{row.strength}</td>
+                  <td>{row.bestFor}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
   )
@@ -831,13 +922,82 @@ const tiers = [
   ],
 ]
 
+function SocialProof() {
+  const logos = [
+    { name: "[Client logo 1]", label: "BioKinetics Research" },
+    { name: "[Client logo 2]", label: "Apex Human Dynamics" },
+    { name: "[Client logo 3]", label: "NeuroGait Systems" },
+    { name: "[Client logo 4]", label: "OrthoRobotics Global" },
+  ]
+
+  const stats = [
+    { value: "[120+]", label: "deployments" },
+    { value: "[8]", label: "years of research" },
+    { value: "[15]", label: "countries" },
+    { value: "[98%]", label: "user satisfaction" },
+  ]
+
+  return (
+    <section className="section social-proof-section" id="social-proof">
+      <SectionHeader
+        eyebrow="08 · PROVEN IMPACT"
+        title="Trusted by teams building the future."
+        copy="Engineered in collaboration with leading robotic laboratories, clinical specialists, and endurance pioneers worldwide."
+      />
+      <div className="client-logos-row">
+        {logos.map((logo, idx) => (
+          <div key={idx} className="client-logo-pill">
+            <span className="logo-placeholder-icon">✦</span>
+            <div className="client-logo-text">
+              <strong>{logo.name}</strong>
+              <small>{logo.label}</small>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="social-stats-grid">
+        {stats.map((s, idx) => (
+          <div key={idx} className="social-stat-card">
+            <span className="social-stat-value">{s.value}</span>
+            <span className="social-stat-label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="testimonials-grid">
+        <div className="testimonial-card">
+          <span className="testimonial-quote-mark">“</span>
+          <blockquote>
+            “[Real quote about how NEXTFORM improved their work.]”
+          </blockquote>
+          <div className="testimonial-author">
+            <strong>[Name, Role, Company]</strong>
+            <span>Lead Kinematics Researcher</span>
+          </div>
+        </div>
+        <div className="testimonial-card">
+          <span className="testimonial-quote-mark">“</span>
+          <blockquote>
+            “[Real quote about comfort, reliability or support.]”
+          </blockquote>
+          <div className="testimonial-author">
+            <strong>[Name, Role, Company]</strong>
+            <span>Director of Clinical Operations</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function Tiers({ onConnect }: { onConnect: () => void }) {
   return (
     <section className="section tier-section" id="tiers">
       <SectionHeader
-        eyebrow="09 · EXPLORE NEXFORM"
+        eyebrow="09 · EXPLORE NEXTFORM"
         title="Choose your point of entry."
-        copy="Three pathways to engage with NEXFORM engineering, from core architectural principles to fully bespoke robotic integration."
+        copy="Start small or go fully custom. Every option can grow with you."
       />
       <div className="tier-grid">
         {tiers.map(([number, title, copy, cta, href, image, tag], index) => (
@@ -866,6 +1026,59 @@ function Tiers({ onConnect }: { onConnect: () => void }) {
           </article>
         ))}
       </div>
+      <div className="tier-matrix-container">
+        <h4 className="tier-matrix-title">System Comparison Matrix</h4>
+        <div className="tier-matrix-wrap">
+          <table className="tier-matrix-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Foundation</th>
+                <th>Advanced</th>
+                <th>Custom</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="row-header">Best for</td>
+                <td>First-time users and pilots</td>
+                <td>Teams scaling up</td>
+                <td>Unique, complex needs</td>
+              </tr>
+              <tr>
+                <td className="row-header">Weight</td>
+                <td>[X kg]</td>
+                <td>[X kg]</td>
+                <td>Built to spec</td>
+              </tr>
+              <tr>
+                <td className="row-header">Sensors</td>
+                <td>Core</td>
+                <td>Full suite</td>
+                <td>Your choice</td>
+              </tr>
+              <tr>
+                <td className="row-header">Support</td>
+                <td>Standard</td>
+                <td>Priority</td>
+                <td>Dedicated team</td>
+              </tr>
+              <tr className="tier-action-row">
+                <td className="row-header">Action</td>
+                <td>
+                  <a href="#modules" className="tier-matrix-btn">Explore Foundation</a>
+                </td>
+                <td>
+                  <a href="#modules" className="tier-matrix-btn">Explore Advanced</a>
+                </td>
+                <td>
+                  <button type="button" onClick={onConnect} className="tier-matrix-btn primary">Talk about Custom</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
   )
 }
@@ -876,7 +1089,7 @@ function Philosophy() {
       <SectionHeader
         eyebrow="01 · THE PHILOSOPHY"
         title="Neither purely human. Nor merely machine."
-        copy="The next evolution is not about replacing human capability. It is about extending it — where biological intelligence meets engineered precision, and technology becomes a natural extension of the self."
+        copy="Adaptive robotic systems that extend human strength, precision and endurance, without replacing the person using them."
       />
       <div className="duality">
         <ImageWithFallback
@@ -893,6 +1106,79 @@ function Philosophy() {
           alt="Human intelligence and robotic interaction interface"
         />
       </div>
+      <div className="philosophy-body">
+        <p>
+          We start with the human body and design outward. Every joint, sensor
+          and surface exists to support natural movement, not to override it.
+        </p>
+      </div>
+    </section>
+  )
+}
+
+function Faq({ onConnect }: { onConnect: () => void }) {
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
+
+  const faqs = [
+    {
+      q: "How much does it cost?",
+      a: "Pricing depends on the system you choose. Foundation starts at [price]. Book a demo and we will give you a clear quote.",
+    },
+    {
+      q: "How long does delivery take?",
+      a: "Foundation systems ship in [X weeks]. Advanced and Custom builds take [X to X weeks].",
+    },
+    {
+      q: "Can it be customized?",
+      a: "Yes. Every system can be adjusted for size, task and environment. Custom builds are designed with you from the start.",
+    },
+    {
+      q: "Is it safe?",
+      a: "Safety is tested at every stage, and each system goes through full checks before delivery. [Add certifications if you have them.]",
+    },
+    {
+      q: "What support do you offer?",
+      a: "Training, maintenance and updates. Advanced and Custom plans include priority support.",
+    },
+  ]
+
+  return (
+    <section className="section faq-section" id="faq">
+      <SectionHeader
+        eyebrow="10 · FREQUENTLY ASKED QUESTIONS"
+        title="Frequently Asked Questions"
+        copy="Everything you need to know about our systems, customization, and deployment."
+      />
+      <div className="faq-accordion">
+        {faqs.map((faq, idx) => {
+          const isOpen = openIndex === idx
+          return (
+            <div key={idx} className={`faq-item ${isOpen ? "open" : ""}`}>
+              <button
+                type="button"
+                className="faq-question-btn"
+                onClick={() => setOpenIndex(isOpen ? null : idx)}
+                aria-expanded={isOpen}
+              >
+                <span>{faq.q}</span>
+                <span className="faq-toggle-icon">{isOpen ? "−" : "+"}</span>
+              </button>
+              {isOpen && (
+                <div className="faq-answer">
+                  <p>{faq.a}</p>
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </div>
+      <div className="faq-footer-cta">
+        <p>Have a custom question or specific engineering requirement?</p>
+        <button type="button" onClick={onConnect} className="button-link secondary">
+          <span>Book a demo with an engineer</span>
+          <ArrowRight size={16} />
+        </button>
+      </div>
     </section>
   )
 }
@@ -907,20 +1193,21 @@ function FinalCta({ onConnect }: { onConnect: () => void }) {
         }}
       />
       <div className="final-content">
-        <p className="eyebrow">NEXFORM · CONTINUUM</p>
-        <h2>The next version begins with you.</h2>
+        <p className="eyebrow">NEXTFORM · INVITATION</p>
+        <h2>Technology should extend us. Not erase us.</h2>
         <p>
-          Explore the possibilities at the intersection of human instinct and
-          engineered precision.
+          See how NEXTFORM can fit your team. Book a 30-minute demo and we will
+          show you a system built for your needs.
         </p>
         <div className="final-actions">
           <button className="button-link" onClick={onConnect}>
-            <span>Connect with NEXFORM</span>
+            <span>Book a demo</span>
             <ArrowRight size={16} />
           </button>
-          <ButtonLink href="#modules" secondary>
-            Explore the modules
-          </ButtonLink>
+          <button className="button-link secondary" onClick={onConnect}>
+            <span>Download the overview</span>
+            <ArrowRight size={16} />
+          </button>
         </div>
       </div>
     </section>
@@ -963,8 +1250,7 @@ function Footer({
             </span>
           </div>
           <p className="footer-tagline">
-            Next-generation biomechanical augmentation and humanoid robotics engineering.
-            Poised between biological instinct and titanium precision.
+            The next version begins with you.
           </p>
           <div className="footer-social-section">
             <span className="footer-social-heading">CONNECT WITH US</span>
@@ -1021,14 +1307,15 @@ function Footer({
           </div>
         </div>
 
-        {/* Column 2: Systems */}
+        {/* Column 2: Navigation Links */}
         <div className="footer-col">
-          <span className="footer-col-title">SYSTEMS</span>
-          <a href="#modules">Structural Support</a>
-          <a href="#modules">Sensory Interface</a>
-          <a href="#modules">Adaptive Mechanics</a>
-          <a href="#modules">Material Integration</a>
-          <a href="#anatomy">System Anatomy</a>
+          <span className="footer-col-title">LINKS</span>
+          <a href="#modules">Technology</a>
+          <a href="#biotech">Materials</a>
+          <a href="#applications">Applications</a>
+          <a href="#demo">Explore</a>
+          <a href="#faq">FAQ</a>
+          <button type="button" onClick={onConnect} className="footer-text-link">Contact</button>
         </div>
 
         {/* Column 3: Research & Platform */}
@@ -1044,9 +1331,9 @@ function Footer({
 
         {/* Column 4: Newsletter & Dispatch */}
         <div className="footer-col footer-col-newsletter">
-          <span className="footer-col-title">NEXFORM DISPATCH</span>
+          <span className="footer-col-title">NEWSLETTER</span>
           <p className="newsletter-copy">
-            Subscribe to quarterly field reports on kinematics, machine perception, and cybernetic systems.
+            Get updates on new systems and research.
           </p>
           {subscribed ? (
             <div className="newsletter-success" role="status">
@@ -1220,8 +1507,9 @@ export default function App() {
         <Applications />
         <LiveDemo />
         <Materials />
-        <Manifesto />
+        <SocialProof />
         <Tiers onConnect={() => setContact(true)} />
+        <Faq onConnect={() => setContact(true)} />
         <FinalCta onConnect={() => setContact(true)} />
       </main>
       <Footer onConnect={() => setContact(true)} onLegal={setLegal} />
